@@ -1,4 +1,11 @@
-Para amanhã (ordem de prioridade):
+*Lembrar, para rodar:*
+
+    - Rodar o Container no Docker
+    - Rodar app.py
+    - Banco no Dbvr
+
+
+*Para amanhã (ordem de prioridade):*
 
 Criar tabela de modalidades   N-N
 
@@ -24,3 +31,7 @@ id_plano	id_modalidade
 1	1
 2	1
 2	2
+
+
+
+gb 123
