@@ -1,8 +1,11 @@
-from flask import flash, redirect, render_template, request, session, url_for
-
 from app import app, db
+from flask import flash, redirect, render_template, request, session, url_for
 from models.user_model import Usuario
 
+
+@app.route('/')
+def index():
+    return redirect(url_for('home'))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -13,6 +16,7 @@ def login():
         user = Usuario.query.filter_by(username=username).first()
         if user and user.verify_password(password):
             session['username'] = user.username
+            session['logged_in'] = True
             print(session)
             return redirect(url_for('home'))
         else:
@@ -23,15 +27,15 @@ def login():
 
 @app.route('/home')
 def home():
-    if 'username' not in session:
-        print('user not in session')
+    if not session.get('logged_in'):
+        print('Por favor, faça login para continuar.', 'warning')
         return redirect(url_for('login'))
-    print('ok')
+
     return render_template('home.html', username=session['username'])
 
 
 @app.route('/logout')
 def logout():
-    session.pop('username', None) 
-    flash('Você saiu com sucesso.')
+    session.clear() 
+    print('Você saiu com sucesso!', 'info')
     return redirect(url_for('login'))
