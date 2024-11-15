@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primeiro Login</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script>
+        function validatePasswords(event) {
+            const newPassword = document.getElementById('new_password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+
+            if (newPassword !== confirmPassword) {
+                event.preventDefault(); // Evita o envio do formulário
+                alert('As senhas não coincidem. Por favor, verifique.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <form action="/primeiro_login" method="post" onsubmit="validatePasswords(event)">
+        {% if not show_user_fields %}
+        
+        <label for="cpf">CPF:</label>
+        <input type="text" id="cpf" name="cpf" required pattern="\d{11}" title="Digite um CPF válido com 11 dígitos"><br>
+        {% else %}
+       
+        <input type="hidden" id="cpf" name="cpf" value="{{ cpf }}">
+        {% endif %}
+
+        {% if show_user_fields %}
+       
+        <div class="form-group">
+            <label for="username">Escolha um Username:</label>
+            <input type="text" id="username" name="username" required><br>
+        </div>
+        <div class="form-group">
+            <label for="new_password">Nova Senha:</label>
+            <input type="password" id="new_password" name="new_password" required><br>
+        </div>
+        <div class="form-group">
+            <label for="confirm_password">Confirme a Nova Senha:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required><br>
+        </div>
+        <input type="hidden" name="valid_user" value="true">
+        {% endif %}
+
+    
+        <input type="submit" value="{{ 'Verificar' if not show_user_fields else 'Registrar Dados' }}">
+    </form>
+</body>
+</html>

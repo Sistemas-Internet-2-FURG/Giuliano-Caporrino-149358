@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleção de Perfil</title>
+    <link rel="stylesheet" href="/static/css/role.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <a href="{{ url_for('logout')}}" class="logout-icon" title="Sair">
+            <i class="fas fa-sign-out-alt"></i>
+        </a>
+        <h1>Bem-vindo à Academia!</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Selecione seu Perfil</h2>
+            <div class="role-selection">
+                <a href="{{ url_for('home') }}" class="btn">Entrar como Funcionário</a>
+                <a href="{{ url_for('aluno_home') }}" class="btn">Entrar como Aluno</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Academia Gerenciamento. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

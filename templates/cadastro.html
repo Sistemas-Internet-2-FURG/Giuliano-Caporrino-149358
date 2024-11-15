@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Novo Aluno</title>
+    <link rel="stylesheet" href="/static/css/cadastro.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <a href="{{ url_for('home') }}" class="back-icon" title="Voltar para a Área Administrativa">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <h1>Cadastro de Novo Aluno</h1>
+        <a href="{{ url_for('logout')}}" class="logout-icon" title="Sair">
+            <i class="fas fa-sign-out-alt"></i>
+        </a>
+    </header>
+
+    <main>
+        <form action="{{ url_for('criar_aluno') }}" method="post" class="cadastro-form">
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            <div class="form-group">
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" required pattern="\d{11}" title="Digite um CPF válido com 11 números">
+            </div>
+            <div class="form-group">
+                <label for="idade">Idade:</label>
+                <input type="number" id="idade" name="idade" required min="0" max="120" step="1" placeholder="Ex: 25">
+            </div>
+            <div class="form-group">
+                <label for="telefone">Telefone:</label>
+                <input type="text" id="telefone" name="telefone" required pattern="\d{10,11}" placeholder="Ex: 11999999999" title="Digite um telefone válido com 10 ou 11 dígitos">
+            </div>
+            <div class="form-group">
+                <label for="altura">Altura (em cm):</label>
+                <input type="number" id="altura" name="altura" placeholder="Opcional" step="0.01">
+            </div>
+            <div class="form-group">
+                <label for="peso">Peso (em kg):</label>
+                <input type="number" id="peso" name="peso" placeholder="Opcional" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="historico_doencas">Histórico de Doenças:</label>
+                <textarea id="historico_doencas" name="historico_doencas" rows="3" placeholder="Opcional"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="historico_lesao">Histórico de Lesões:</label>
+                <textarea id="historico_lesao" name="historico_lesao" rows="3" placeholder="Opcional"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="plano">Plano:</label>
+                <select id="plano" name="plano" required>
+                    <option value="musculacao">Musculação Apenas</option>
+                    <option value="musculacao_2_modalidades">Musculação + 2 Modalidades</option>
+                    <option value="acesso_geral">Acesso Geral</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="flag">Tipo de Usuário:</label>
+                <select id="flag" name="flag" required>
+                    <option value="aluno">Aluno</option>
+                    <option value="professor">Professor</option>
+                </select>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">Cadastrar</button>
+                <button type="reset" class="btn-reset">Limpar</button>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Academia Gerenciamento. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

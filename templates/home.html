@@ -3,10 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Home - Academia</title>
+    <link rel="stylesheet" href="/static/css/home.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
 </head>
 <body>
-    <h1>Bem-vindo, {{ username }}!</h1>
-    <a href="{{ url_for('logout') }}">Sair</a>
+    <header>
+        <a href="{{ url_for('role') }}" class="back-icon" title="Voltar para a Área Administrativa">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <h1>Área Administrativa</h1>
+        <h1 class="username">{{ username }}</h1>
+        <a href="{{ url_for('logout')}}" class="logout-icon" title="Sair">
+            <i class="fas fa-sign-out-alt"></i>
+        </a>
+        
+    </header>
+
+    <main>
+        <section>
+            <h2>Gestão de Alunos</h2>
+            <ul>
+                <li><a href="{{ url_for('listar_alunos') }}">Listar Alunos</a></li>
+                <li><a href="{{ url_for('cadastrar_aluno') }}">Cadastrar Novo Aluno</a></li>
+                <li><a href="{{ url_for('vincular_modalidade') }}">Vincular Modalidades a Aluno</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Gestão de Modalidades</h2>
+            <ul>
+                <li><a href="{{ url_for('listar_modalidades') }}">Listar Modalidades</a></li>
+                <li><a href="{{ url_for('adicionar_modalidade') }}">Adicionar Nova Modalidade</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Planos Disponíveis</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Plano</th>
+                        <th>Descrição</th>
+                        <th>Preço</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Musculação Apenas</td>
+                        <td>Acesso apenas às áreas de musculação</td>
+                        <td>R$ 100,00</td>
+                    </tr>
+                    <tr>
+                        <td>Musculação + 2 Modalidades</td>
+                        <td>Musculação e escolha de até 2 modalidades</td>
+                        <td>R$ 150,00</td>
+                    </tr>
+                    <tr>
+                        <td>Acesso Geral</td>
+                        <td>Acesso total a todas as modalidades e áreas</td>
+                        <td>R$ 200,00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Academia Gerenciamento. Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>

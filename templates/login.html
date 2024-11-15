@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="/static/css/style.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-
-    
 </head>
 <body>
     <form action="/login" method="post">
         <label for="username">Usuário:</label>
-        <input type="text" id="username" name="username"><br>
+        <input type="text" id="username" name="username" required><br>
         <label for="password">Senha:</label>
-        <input type="password" id="password" name="password"><br>
+        <input type="password" id="password" name="password" required><br>
         <input type="submit" value="Acessar">
+        <hr class="divider">
+        <p class="primeiro-login">
+            <a href="/primeiro_login">Esse é meu primeiro Login</a>
+        </p>
     </form>
 </body>
 </html>

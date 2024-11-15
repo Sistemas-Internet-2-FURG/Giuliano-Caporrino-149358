@@ -1,0 +1,26 @@
+Para amanhã (ordem de prioridade):
+
+Criar tabela de modalidades   N-N
+
+Botão "Entrar como Aluno" --> Fazer página de exibição dos dados do aluno
+
+
+
+modalidades
+id_modalidade	nome	descricao
+1	Musculação	Acesso às máquinas de musculação.
+2	Yoga	Práticas de Yoga.
+3	Pilates	Exercícios de Pilates.
+
+
+aluno_modalidade (Tabela Intermediária)
+id_aluno	id_modalidade
+1	1
+1	2
+2	3
+
+plano_modalidade (Tabela Intermediária)
+id_plano	id_modalidade
+1	1
+2	1
+2	2

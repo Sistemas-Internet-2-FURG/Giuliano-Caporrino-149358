@@ -39,3 +39,22 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #0056b3; 
 }
+.primeiro-login {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.primeiro-login a {
+    color: #007BFF;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.primeiro-login a:hover {
+    text-decoration: underline;
+}
+.divider {
+    margin: 15px 0;
+    border: none;
+    border-top: 1px solid #ccc; /* Cor e estilo da linha */
+}
