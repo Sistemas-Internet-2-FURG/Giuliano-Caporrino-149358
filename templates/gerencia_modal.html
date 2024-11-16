@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Modalidades</title>
+    <link rel="stylesheet" href="/static/css/gerencia_modal.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="{{ url_for('home') }}" class="back-icon" title="Voltar para a Área Administrativa">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <h1>Gerenciar Alunos em Modalidades</h1>
+        <a href="{{ url_for('logout') }}" class="logout-icon" title="Sair">
+            <i class="fas fa-sign-out-alt"></i>
+        </a>
+    </header>
+
+    <main>
+        <h2>Vincular Alunos em Modalidades</h2>
+
+        <form action="/gerenciar_modalidades" method="post">
+            <!-- Dropdown para selecionar alunos -->
+            <div class="form-group">
+                <label for="id_usuario">Selecione um Aluno:</label>
+                <select id="id_usuario" name="id_usuario" required>
+                    {% for aluno in alunos if aluno.is_professor != 1 %}
+                    <option value="{{ aluno.id_usuario }}">{{ aluno.nome }} (Plano: {{ aluno.plano_nome }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Dropdown para selecionar modalidades -->
+            <div class="form-group">
+                <label for="id_modalidade">Selecione uma Modalidade:</label>
+                <select id="id_modalidade" name="id_modalidade" required>
+                    {% for modalidade in modalidades %}
+                    <option value="{{ modalidade.id_modalidade }}">{{ modalidade.nome }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Botão para adicionar -->
+            <button type="submit" class="btn-submit">Adicionar Aluno à Modalidade</button>
+        </form>
+
+        <h2>Desvincular Alunos de Modalidades</h2>
+        <form id="desvincular-form">
+            <div class="form-group">
+                <label for="id_usuario_desvincular">Selecione um Aluno:</label>
+                <select id="id_usuario_desvincular" name="id_usuario_desvincular" required onchange="fetchModalidades(this.value)">
+                    <option value="">-- Selecione um aluno --</option>
+                    {% for aluno in alunos if aluno.is_professor != 1 %}
+                    <option value="{{ aluno.id_usuario }}">{{ aluno.nome }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div id="modalidades-list" style="margin-top: 20px;">
+                
+            </div>
+        </form>
+    </main>
+
+    <script>
+        async function fetchModalidades(idUsuario) {
+            const response = await fetch(`/modalidades_vinculadas/${idUsuario}`);
+            const modalidades = await response.json();
+
+            const listContainer = document.getElementById('modalidades-list');
+            listContainer.innerHTML = '';
+
+            if (modalidades.length > 0) {
+                modalidades.forEach(modalidade => {
+                    const div = document.createElement('div');
+                    div.classList.add('form-group');
+                    div.innerHTML = `
+                        <span>${modalidade.nome}</span>
+                        <button type="button" class="btn-remove" onclick="removerModalidade(${idUsuario}, ${modalidade.id_modalidade})">X</button>
+                    `;
+                    listContainer.appendChild(div);
+                });
+            } else {
+                listContainer.innerHTML = '<p>Nenhuma modalidade vinculada.</p>';
+            }
+        }
+
+        async function removerModalidade(idUsuario, idModalidade) {
+            const response = await fetch('/remover_aluno_modalidade', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id_usuario: idUsuario, id_modalidade: idModalidade }),
+            });
+
+            if (response.ok) {
+                alert('Modalidade desvinculada com sucesso!');
+                fetchModalidades(idUsuario);
+            } else {
+                alert('Erro ao desvincular modalidade.');
+            }
+        }
+    </script>
+</body>
+</html>

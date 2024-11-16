@@ -55,12 +55,13 @@
             </div>
             <div class="form-group">
                 <label for="plano">Plano:</label>
-                <select id="plano" name="plano" required>
-                    <option value="musculacao">Musculação Apenas</option>
-                    <option value="musculacao_2_modalidades">Musculação + 2 Modalidades</option>
-                    <option value="acesso_geral">Acesso Geral</option>
+                <select id="plano" name="id_plano" required>
+                    {% for plano in planos %}
+                    <option value="{{ plano.id_plano }}">{{ plano.nome }}</option>
+                    {% endfor %}
                 </select>
             </div>
+            
             <div class="form-group">
                 <label for="flag">Tipo de Usuário:</label>
                 <select id="flag" name="flag" required>

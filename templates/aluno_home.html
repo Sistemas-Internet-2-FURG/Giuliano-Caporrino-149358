@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo, {{ aluno.nome }}</title>
+    <link rel="stylesheet" href="/static/css/aluno_home.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="{{ url_for('role') }}" class="back-icon" title="Voltar para a Página Inicial">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <h1>Bem-vindo, {{ aluno.nome }}</h1>
+        <a href="{{ url_for('logout') }}" class="logout-icon" title="Sair">
+            <i class="fas fa-sign-out-alt"></i>
+        </a>
+    </header>
+
+    <main>
+        <section>
+            <h2>Suas Informações Cadastradas</h2>
+            <ul>
+                <li><strong>Nome:</strong> {{ aluno.nome }}</li>
+                <li><strong>CPF:</strong> {{ aluno.cpf }}</li>
+                <li><strong>Idade:</strong> {{ aluno.idade }} anos</li>
+                <li><strong>Altura:</strong> {{ aluno.altura if aluno.altura else 'Não informado' }}</li>
+                <li><strong>Peso:</strong> {{ aluno.peso if aluno.peso else 'Não informado' }}</li>
+                <li><strong>Telefone:</strong> {{ aluno.telefone if aluno.telefone else 'Não informado' }}</li>
+                <li><strong>Histórico de Doenças:</strong> {{ aluno.historico_doencas if aluno.historico_doencas else 'Não informado' }}</li>
+                <li><strong>Histórico de Lesões:</strong> {{ aluno.historico_lesoes if aluno.historico_lesoes else 'Não informado' }}</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Plano Atual</h2>
+            <ul>
+                <li><strong>Plano:</strong> {{ aluno.plano_nome }}</li>
+                <li><strong>Descrição:</strong> {{ aluno.plano_descricao }}</li>
+                <li><strong>Valor:</strong> R$ {{ aluno.plano_valor }}</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Modalidades que Você Participa</h2>
+            {% if modalidades %}
+                <ul>
+                    {% for modalidade in modalidades %}
+                    <li>{{ modalidade.nome }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Você ainda não está inscrito em nenhuma modalidade.</p>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Academia Gerenciamento. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
