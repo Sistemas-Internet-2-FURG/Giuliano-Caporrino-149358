@@ -3,7 +3,7 @@ from functools import wraps
 
 from app import app, db
 from flask import flash, redirect, render_template, request, session, url_for
-from models.user_model import DetalhesUsuario, Usuario
+from models.user_model import DetalhesUsuario, Modalidade, Usuario
 
 
 @app.route('/')
@@ -170,6 +170,53 @@ def primeiro_login():
 
 
 
+@app.route('/listar-modalidades', methods=['GET'])
+def listar_modalidades():
+    modalidades = Modalidade.query.all()
+    return render_template('listar_modalidades.html', modalidades=modalidades)
+
+
+@app.route('/modalidades')
+@professor_required
+def adicionar_modalidade():
+    return render_template('modalidade.html')
+
+
+
+@app.route('/criar_modalidade', methods=['GET', 'POST'])
+@professor_required
+def criar_modalidade():
+    if request.method == 'POST':
+        nome = request.form.get('nome')
+        descricao = request.form.get('descricao', '')
+
+        if not nome:
+            flash('O campo Nome é obrigatório.', 'danger')
+            return render_template('criar_modalidade.html')
+
+        try:
+            nova_modalidade = Modalidade(nome=nome, descricao=descricao)
+            db.session.add(nova_modalidade)
+            db.session.commit()
+            flash('Modalidade criada com sucesso!', 'success')
+            return redirect(url_for('home'))
+        except Exception as e:
+            db.session.rollback()
+            flash(f'Erro ao criar modalidade: {e}', 'danger')
+
+    return render_template('criar_modalidade.html')
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -212,12 +259,4 @@ def vincular_modalidade():
     #vincular modalidades ao aluno
     return "Página para vincular modalidades ao aluno."
 
-@app.route('/modalidades')
-def listar_modalidades():
-    #  listar modalidades
-    return "Página para listar modalidades."
 
-@app.route('/modalidades/adicionar')
-def adicionar_modalidade():
-    #   adicionar nova modalidade
-    return "Página para adicionar nova modalidade."

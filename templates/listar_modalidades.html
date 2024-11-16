@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modalidades Ofertadas</title>
+    <link rel="stylesheet" href="/static/css/listarmodalidades.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="{{ url_for('home') }}" class="back-icon" title="Voltar para a Área Administrativa">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <h1>Modalidades Ofertadas</h1>
+        <a href="{{ url_for('logout') }}" class="logout-icon" title="Sair">
+            <i class="fas fa-sign-out-alt"></i>
+        </a>
+    </header>
+
+    <main>
+        <section class="modalidades-lista">
+            <h2>Lista de Modalidades</h2>
+            {% if modalidades %}
+            <ul>
+                {% for modalidade in modalidades %}
+                <li class="modalidade-item">
+                    <h3>{{ modalidade.nome }}</h3>
+                    <p>{{ modalidade.descricao }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>Nenhuma modalidade cadastrada até o momento.</p>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Academia Gerenciamento. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

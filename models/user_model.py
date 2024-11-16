@@ -35,3 +35,14 @@ class DetalhesUsuario(db.Model):
 
     ##Relacionamento com a tabela `usuarios`
     usuario = db.relationship('Usuario', backref=db.backref('detalhes', lazy=True))
+
+
+    
+class Modalidade(db.Model):
+    __tablename__ = 'modalidades'
+
+    id_modalidade = db.Column(db.Integer, primary_key=True, autoincrement=True)  # ID único da modalidade
+    nome = db.Column(db.String(100), nullable=False, unique=True)  # Nome da modalidade, ex.: "Yoga"
+    descricao = db.Column(db.Text, nullable=True)  # Descrição da modalidade (opcional)
+    criado_em = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)  # Data de criação
+

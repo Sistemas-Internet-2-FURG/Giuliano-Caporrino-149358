@@ -1,0 +1,113 @@
+/* Geral */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f9fc;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    background: #0073e6;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.back-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.back-icon:hover {
+    color: #004999;
+}
+
+/* Main */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+
+/* Footer */
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+}
+
+/* Estilização do ícone de logout */
+.logout-icon {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 0%;
+    transition: background-color 0.3s ease;
+}
+
+.logout-icon:hover {
+    color: #004999;
+}
+
+
+
+
+.modalidades-lista {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modalidades-lista h2 {
+    text-align: center;
+    color: #0073e6;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.modalidade-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #f7f9fc;
+}
+
+.modalidade-item h3 {
+    margin: 0;
+    color: #333;
+    font-size: 18px;
+}
+
+.modalidade-item p {
+    margin: 5px 0 0;
+    color: #666;
+    font-size: 14px;
+}
