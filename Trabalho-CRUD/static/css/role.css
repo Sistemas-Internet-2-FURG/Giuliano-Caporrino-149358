@@ -1,38 +1,38 @@
-/* Geral */
+
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f7f9fc; /* Fundo leve */
-    color: #333; /* Cor do texto */
+    background-color: #f7f9fc; 
+    color: #333;
     display: flex;
     align-items: center;
-    flex-direction: column; /* Organiza verticalmente */
-    min-height: 100vh; /* Altura mínima da viewport */
+    flex-direction: column;
+    min-height: 100vh;
     position: relative;
 }
 
-/* Header (Faixa Azul no Topo) */
+
 header {
-    background: #0073e6; /* Azul forte */
+    background: #0073e6; 
     color: white;
     padding: 20px;
     text-align: center;
-    width: 100%; /* Largura total */
+    width: 100%;
 }
 
-/* Main (Conteúdo Centralizado) */
+
 main {
-    flex: 1; /* Faz o conteúdo ocupar o espaço restante */
+    flex: 1; 
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centraliza verticalmente */
-    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; 
+    align-items: center;
     padding: 20px;
     text-align: center;
 }
 
-/* Botões de Seleção */
+
 .role-selection {
     display: flex;
     justify-content: center;
@@ -56,16 +56,15 @@ main {
     background-color: #005bb5;
 }
 
-/* Footer (Faixa Preta na Base) */
+
 footer {
     background: #333;
     color: white;
     text-align: center;
     padding: 10px 0;
-    width: 100%; /* Largura total */
+    width: 100%;
 }
 
-/* Estilização do ícone de logout */
 .logout-icon {
     position: absolute;
     top: 20px;

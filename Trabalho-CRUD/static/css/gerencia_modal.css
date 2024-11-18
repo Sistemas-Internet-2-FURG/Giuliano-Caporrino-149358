@@ -1,4 +1,4 @@
-/* Geral */
+
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -10,7 +10,7 @@ body {
     min-height: 100vh;
 }
 
-/* Header */
+
 header {
     background: #0073e6;
     color: white;
@@ -49,7 +49,6 @@ header h1 {
     background-color: #004999;
 }
 
-/* Main */
 main {
     flex: 1;
     padding: 20px;
@@ -57,7 +56,7 @@ main {
     margin: 0 auto;
 }
 
-/* Formulário */
+
 form {
     background: white;
     padding: 20px;
@@ -103,7 +102,7 @@ form {
     background-color: #005bb5;
 }
 
-/* Seção de Alunos por Modalidade */
+
 h2 {
     margin-top: 40px;
     color: #0073e6;
@@ -137,7 +136,7 @@ ul li {
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Botão Remover */
+
 .btn-remove {
     background-color: #e63946;
     color: white;
@@ -153,7 +152,7 @@ ul li {
     background-color: #b71c1c;
 }
 
-/* Responsividade */
+
 @media (max-width: 768px) {
     form, ul li {
         flex-direction: column;

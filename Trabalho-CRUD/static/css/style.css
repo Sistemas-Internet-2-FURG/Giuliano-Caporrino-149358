@@ -56,5 +56,5 @@ input[type="submit"]:hover {
 .divider {
     margin: 15px 0;
     border: none;
-    border-top: 1px solid #ccc; /* Cor e estilo da linha */
+    border-top: 1px solid #ccc; 
 }

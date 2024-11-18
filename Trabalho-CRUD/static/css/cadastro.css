@@ -1,4 +1,4 @@
-/* Geral */
+
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -10,7 +10,7 @@ body {
     min-height: 100vh;
 }
 
-/* Header */
+
 header {
     background: #0073e6;
     color: white;
@@ -36,7 +36,6 @@ header h1 {
     color: #004999;
 }
 
-/* Main */
 main {
     flex: 1;
     display: flex;
@@ -108,7 +107,7 @@ textarea {
     background-color: #444;
 }
 
-/* Footer */
+
 footer {
     background: #333;
     color: white;
@@ -117,7 +116,7 @@ footer {
     width: 100%;
 }
 
-/* Estilização do ícone de logout */
+
 .logout-icon {
     position: absolute;
     top: 20px;

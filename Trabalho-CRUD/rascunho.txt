@@ -1,3 +1,14 @@
+
+
+
+
+
+
+
+
+Rascunhho
+
+
 *Lembrar, para rodar:*
 
     - Rodar o Container no Docker
@@ -33,5 +44,3 @@ id_plano	id_modalidade
 2	2
 
 
-
-gb 123

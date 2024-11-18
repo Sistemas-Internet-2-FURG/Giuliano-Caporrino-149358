@@ -1,4 +1,4 @@
-/* Geral */
+
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -112,7 +112,7 @@ footer {
     margin-top: auto;
 }
 
-/* Responsividade */
+
 @media (max-width: 768px) {
     main {
         padding: 10px;
