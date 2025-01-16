@@ -49,7 +49,7 @@ def logout():
 def professor_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        #Verifica se o usuário está logado e se tem a flag de prof
+        ##Verifica se o usuário está logado e se tem a flag de prof
         if 'username' not in session:
             flash("Por favor, faça login para acessar essa página.", "error")
             return redirect(url_for('login'))
@@ -181,14 +181,14 @@ def listar_modalidades():
     modalidades = Modalidade.query.all()
     return render_template('listar_modalidades.html', modalidades=modalidades)
 
-
+##Rota protegida para professores
 @app.route('/modalidades')
 @professor_required
 def adicionar_modalidade():
     return render_template('modalidade.html')
 
 
-
+##Rota protegida para professores
 @app.route('/criar_modalidade', methods=['GET', 'POST'])
 @professor_required
 def criar_modalidade():
@@ -212,7 +212,7 @@ def criar_modalidade():
 
     return render_template('criar_modalidade.html')
 
-
+##Rota protegida para professores
 @app.route('/vincular_modalidade', methods=['GET'])
 @professor_required
 def vincular_modalidade():
@@ -231,7 +231,7 @@ def vincular_modalidade():
     .all()
 )
 
-    print(alunos)
+    
 
     ##Buscar todas as modalidades
     modalidades = Modalidade.query.all()
@@ -239,7 +239,7 @@ def vincular_modalidade():
     return render_template('gerencia_modal.html', alunos=alunos, modalidades=modalidades)
 
 
-
+##Rota protegida para professores
 @app.route('/gerenciar_modalidades', methods=['GET', 'POST'])
 @professor_required
 def gerenciar_modalidades():
@@ -284,7 +284,7 @@ def gerenciar_modalidades():
     return render_template('gerencia_modal.html')
 
 
-
+##Rota protegida para professores
 @app.route('/remover_aluno_modalidade', methods=['POST'])
 @professor_required
 def remover_aluno_modalidade():
@@ -305,10 +305,10 @@ def remover_aluno_modalidade():
 
 
 
-
+##Rota protegida para professores
 @app.route('/modalidades_vinculadas/<int:id_usuario>', methods=['GET'])
 def modalidades_vinculadas(id_usuario):
-    # Buscar as modalidades vinculadas ao usuário
+
     modalidades = (
         db.session.query(Modalidade.id_modalidade, Modalidade.nome)
         .join(AlunoModalidade, Modalidade.id_modalidade == AlunoModalidade.id_modalidade)
@@ -316,23 +316,22 @@ def modalidades_vinculadas(id_usuario):
         .all()
     )
 
-    # Transformar os resultados em uma lista de dicionários
     modalidades_list = [
         {"id_modalidade": modalidade.id_modalidade, "nome": modalidade.nome}
         for modalidade in modalidades
     ]
 
-    # Retornar os dados em formato JSON
+    
     return jsonify(modalidades_list)
 
 
 
 @app.route('/aluno')
 def aluno_home():
-    # Obter o id do aluno logado (substituir por autenticação/jwt se necessário)
+    
     id_username = session.get('username')
 
-# Buscar informações do aluno
+#informações do aluno
     aluno = db.session.query(
         Usuario.username,
         Usuario.id_usuario,
