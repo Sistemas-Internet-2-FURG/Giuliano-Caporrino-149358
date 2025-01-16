@@ -270,13 +270,23 @@ def cadastrar_disciplina(current_user_id):
 @token_required
 def listar_disciplinas(current_user_id):
     cursor = mysql.connection.cursor()
-    cursor.execute('''SELECT d.id, d.nome, u.nome AS professor, c.nome AS curso
-                      FROM disciplinas d
-                      JOIN usuarios u ON d.professor_id = u.id
-                      JOIN cursos c ON d.curso_id = c.id''')
-    disciplinas = cursor.fetchall()
+    cursor.execute('''
+        SELECT d.id, d.nome, u.nome AS professor, c.id AS curso_id, c.nome AS curso_nome
+        FROM disciplinas d
+        JOIN usuarios u ON d.professor_id = u.id
+        JOIN cursos c ON d.curso_id = c.id
+    ''')
+
+    # Pegamos os nomes das colunas corretamente
+    colunas = [desc[0] for desc in cursor.description]
+
+    # Convertendo os resultados em uma lista de dicionários
+    disciplinas = [dict(zip(colunas, row)) for row in cursor.fetchall()]
+    
     cursor.close()
     return jsonify(disciplinas), 200
+
+
 
 # Atualizar disciplina
 @app.route("/apirestful/disciplinas/<int:disciplina_id>", methods=["PUT"])
